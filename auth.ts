@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./db/prisma";
 import { cookies } from "next/headers";
 import { compareSync } from "bcrypt-ts-edge";
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const config = {
@@ -13,7 +13,7 @@ export const config = {
     error: "/sign-in",
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const,
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   adapter: PrismaAdapter(prisma),
@@ -54,6 +54,7 @@ export const config = {
     }),
   ],
   callbacks: {
+    ...authConfig.callbacks,
     async session({ session, user, trigger, token }: any) {
       // Set user id from token
       session.user.id = token.sub;
@@ -103,6 +104,10 @@ export const config = {
               });
             }
           }
+        }
+        // Handle session updates
+        if (session?.user.name && trigger === "update") {
+          token.name = session.user.name;
         }
       }
       return token;
