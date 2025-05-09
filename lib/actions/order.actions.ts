@@ -201,7 +201,7 @@ async function updateOrderToPaid({
   paymentResult,
 }: {
   orderId: string;
-  paymentResult: PaymentResult;
+  paymentResult?: PaymentResult;
 }) {
   const order = await prisma.order.findFirst({
     where: {
