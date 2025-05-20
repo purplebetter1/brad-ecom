@@ -17,8 +17,6 @@ import DeleteDialog from "@/components/shared/delete-dialog";
 const AdminProductsPage = async (props: {
   searchParams: Promise<{
     page: string;
-
-    category: string;
   }>;
 }) => {
   await requireAdmin();
@@ -27,7 +25,7 @@ const AdminProductsPage = async (props: {
 
   const page = Number(searchParams.page) || 1;
 
-  const category = searchParams.category || "";
+  // const category = searchParams.category || "";
 
   const products = await getAllProducts({
     page,
