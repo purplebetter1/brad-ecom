@@ -23,6 +23,8 @@ const AdminProductsPage = async (props: {
 }) => {
   await requireAdmin();
 
+  const searchParams = await props.searchParams;
+
   const page = Number(searchParams.page) || 1;
 
   const category = searchParams.category || "";
