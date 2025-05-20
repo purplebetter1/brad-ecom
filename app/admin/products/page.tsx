@@ -29,7 +29,6 @@ const AdminProductsPage = async (props: {
 
   const products = await getAllProducts({
     page,
-    category,
   });
 
   return (
