@@ -17,18 +17,17 @@ import DeleteDialog from "@/components/shared/delete-dialog";
 const AdminProductsPage = async (props: {
   searchParams: Promise<{
     page: string;
-    query: string;
+
     category: string;
   }>;
 }) => {
   await requireAdmin();
-  const searchParams = await props.searchParams;
+
   const page = Number(searchParams.page) || 1;
-  const searchText = searchParams.query || "";
+
   const category = searchParams.category || "";
 
   const products = await getAllProducts({
-    query: searchText,
     page,
     category,
   });
