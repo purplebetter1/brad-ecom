@@ -25,7 +25,7 @@ const OrderDetailsPage = async (props: {
   let client_secret = null;
 
   // Check if is not paid and using stripe
-  if (order.paymentMethod === "Stripe" && !order.isPaid) {
+  if (order.paymentMethod === "Credit" && !order.isPaid) {
     // initialize stripe instance
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
     // create payment intent

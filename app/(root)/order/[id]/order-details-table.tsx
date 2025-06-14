@@ -248,7 +248,7 @@ const OrderDetailsTable = ({
                 </div>
               )}
               {/* Stripe Payment */}
-              {!isPaid && paymentMethod === "Stripe" && stripeClientSecret && (
+              {!isPaid && paymentMethod === "Credit" && stripeClientSecret && (
                 <StripePayment
                   priceInCents={Number(order.totalPrice) * 100}
                   orderId={order.id}
