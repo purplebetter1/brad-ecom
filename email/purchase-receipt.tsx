@@ -15,8 +15,8 @@ import {
 import { Order } from "@/types";
 import { formatCurrency } from "@/lib/utils";
 import sampleData from "@/db/sample-data";
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 PurchaseReceiptEmail.PreviewProps = {
   order: {
@@ -29,10 +29,10 @@ PurchaseReceiptEmail.PreviewProps = {
     paymentMethod: "Stripe",
     shippingAddress: {
       fullName: "John Doe",
-      streetAddress: "272 E 3rd",
+      streetAddress: "123 Main Street",
       city: "New York",
       postalCode: "10009",
-      country: "US",
+      country: "USA",
     },
     createdAt: new Date(),
     totalPrice: "100",
@@ -80,7 +80,7 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
               <Row>
                 <Column>
                   <Text className="mb-0 mr-4 text-gray-500 whitespace-nowrap text-nowrap">
-                    Order Id
+                    Order ID
                   </Text>
                   <Text className="mt-0 mr-4">{order.id.toString()}</Text>
                 </Column>
@@ -113,7 +113,7 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
                       src={
                         item.image.startsWith("/")
                           ? `${process.env.NEXT_PUBLIC_SERVER_URL}
-                      ${item.image}`
+                    ${item.image}`
                           : item.image
                       }
                     />
