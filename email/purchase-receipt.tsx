@@ -29,10 +29,10 @@ PurchaseReceiptEmail.PreviewProps = {
     paymentMethod: "Stripe",
     shippingAddress: {
       fullName: "John Doe",
-      streetAddress: "123 Main Street",
+      streetAddress: "123 Main st",
       city: "New York",
-      postalCode: "10009",
-      country: "USA",
+      postalCode: "10001",
+      country: "US",
     },
     createdAt: new Date(),
     totalPrice: "100",
@@ -70,7 +70,7 @@ type OrderInformationProps = {
 export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
   return (
     <Html>
-      <Preview>View Order Receipt</Preview>
+      <Preview>View order receipt</Preview>
       <Tailwind>
         <Head />
         <Body className="font-sans bg-white">
@@ -112,8 +112,7 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
                       className="rounded"
                       src={
                         item.image.startsWith("/")
-                          ? `${process.env.NEXT_PUBLIC_SERVER_URL}
-                    ${item.image}`
+                          ? `${process.env.NEXT_PUBLIC_SERVER_URL}${item.image}`
                           : item.image
                       }
                     />
@@ -133,7 +132,7 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
                 { name: "Total", price: order.totalPrice },
               ].map(({ name, price }) => (
                 <Row key={name} className="py-1">
-                  <Column align="right">{name}:</Column>
+                  <Column align="right">{name}: </Column>
                   <Column align="right" width={70} className="align-top">
                     <Text className="m-0">{formatCurrency(price)}</Text>
                   </Column>
